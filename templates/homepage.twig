@@ -1,15 +1,19 @@
 {# templates/homepage.twig #}
+{% import 'macros.twig' as myMacros %}
 {% extends 'layout.twig' %}
 {# ... the rest of the template #}
 
-{% block title %}50% off of Bow Ties{% endblock %}
+
+
 
 {% block body %}
+
 {{ include('_banner.twig', { 'backgroundColor': 'violet' }) }}
 <div class="hero-unit">
     <h1>{{ pageData.title }}</h1>
     <p>
-        {{ pageData.summary }}
+        {{ pageData.summary|raw }}
+        
     </p>
 </div>
 
@@ -17,13 +21,66 @@
     <div>We're having a sale!</div>
 {% endif %}
 
+<div class="row">
+    {% macro printProducts(products, emptyMessage) %}
+        {% for product in products %}
+        <div class="span4">
+            <h2>{{ product.name }}</h2>
+
+            <div class="product-img">
+                <img src="../assets/images/{{ product.imagePath }}" alt="{{ product.name }}"/>
+            </div>
+        </div>
+
+        {% if loop.index is divisibleby(3) and not loop.last %}
+        <div class="row">
+            {{ myMacros.printProducts(
+                featuredProducts,
+                "Snow storm in the arctic: nothing on sale today :/")
+            }}
+        </div>
+        
+        <div class="row">
+            {{ myMacros.printProducts(
+                products,
+                "Oh now! We're all out of super-awesome penguin clothes!")
+            }}
+        </div>
+        {% endif %}
+    {% else %}
+        <div class="alert alert-error span12">
+            {{ emptyMessage }}
+        </div>            
+        {% endfor %}
+    {% endmacro %}
+</div>
+{# {% if products|length is even %}
+    <div class="row">
+        <div class="span12">
+            There is an even number of products! OMG!
+        </div>
+    </div>
+{% endif %} 
+</div>
+
+#}
 
 
-{% for product in products %}
-<pre>
-    {{ product.getName() }}
-</pre>
-{% endfor %}
+{# 
+{% if products is empty %}
+    <div class="alert alert-error span12">
+        It looks like we're out of really awesome-looking penguin clothes :/.
+    </div>
+{% endif %} 
+#}
+
+{# {% if products|length is even %}
+    <p>
+        There are an even number of products
+    </p>
+{% endif %} #}
+
+
 {% endblock %}
 
    {# random(10) returns a number from 0 to 10 #}

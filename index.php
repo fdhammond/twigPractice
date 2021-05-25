@@ -30,28 +30,15 @@ $twig->addExtension(new Twig_Extension_Debug());
 // 3) create a few different "pages"
 switch ($uri) {
     // The Homepage! (/)
-    case '/':
-        /*
-        echo $twig->render('homepage.twig', array(
-            'pageTitle' => 'Suit Up!',
-            'products' => array(
-                'Serious Businessman',
-                'Penguin Dress',
-                'Sportstar Penguin',
-                'Angel Costume',
-                'Penguin Accessories',
-                'Super Cool Penguin',
-            ),
-            'saleEndsAt' => new \DateTime('+1 month')
-        ));
-*/
+    case '/index':
+        
         echo $twig->render('homepage.twig', array(
             'pageData' => array(
                 'title' => 'Suit Up!',
                 'summary' => "You're hip, you're cool, you're a penguin! Now, 
                 start dressing like one! Find the latest suits, bow-ties, 
                 swim shorts and other outfits here!",
-                'hasSale' => true,
+                'hasSale' => true,                
             ),
             'products' => array(
                 new Product('Serious Businessman', 'formal.png'),
@@ -59,7 +46,7 @@ switch ($uri) {
                 new Product('Sportstar Penguin', 'sports.png'),
                 new Product('Angel Costume', 'angel-costume.png'),
                 new Product('Penguin Accessories', 'swatter.png'),
-                new Product('Super Cool Penguin', 'super-cool.png'),
+                new Product('Super Cool Penguin', 'super-cool.png')                
             )
         ));
 

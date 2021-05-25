@@ -3,9 +3,13 @@
 <html lang="en">
 {# ... more stuff ... #}
 
-<title>{% block title %}
-    Penguin Swag
-    {% endblock %}</title>
+<title>
+    {%- if block('title') -%}
+        {{- block('title') -}} | Penguins Pants Plus!
+    {%- else -%}
+        Penguins Pants Plus! Your source for fancy penguin suits
+    {%- endif -%}
+</title>
 
 {# ... #}
 
