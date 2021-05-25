@@ -1,0 +1,70 @@
+{# templates/homepage.twig #}
+{% extends 'layout.twig' %}
+{# ... the rest of the template #}
+
+{% block title %}50% off of Bow Ties{% endblock %}
+
+{% block body %}
+{{ include('_banner.twig', { 'backgroundColor': 'violet' }) }}
+<div class="hero-unit">
+    <h1>{{ pageData.title }}</h1>
+    <p>
+        {{ pageData.summary }}
+    </p>
+</div>
+
+{% if pageData.hasSale %}
+    <div>We're having a sale!</div>
+{% endif %}
+
+
+
+{% for product in products %}
+<pre>
+    {{ product.getName() }}
+</pre>
+{% endfor %}
+{% endblock %}
+
+   {# random(10) returns a number from 0 to 10 #}
+{#
+
+<div class="hero-unit">
+    <h1>{{ pageTitle }}</h1>
+</div>
+
+<div class="row">
+    <div class="price">
+        {{ (random() / 100)|number_format(1) }}
+    {% if random(10) < 5 %}
+        Really cheap!
+    {% endif %}
+    </div>
+</div>
+
+
+ <div class="row">
+    {% for product in products %}
+        <div class="span4">
+            <h2>{{ product }}</h2>                      
+        </div>
+    {% endfor %}
+</div> 
+
+<div class="row">
+{% for product in products %}
+<h2>{{ product }}</h2>     
+{% if products|length == 0 %}
+        <div class="alert alert-error span12">
+        It looks like we're out of really awesome-looking penguin clothes :/.
+        </div>
+{% endif %}  
+{% endfor %}
+</div>
+
+
+<div class="sale-ends-at">
+    {{ saleEndsAt|date('D M Y jS ga') }}
+</div>
+#}
+

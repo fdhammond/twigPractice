@@ -1,0 +1,13 @@
+{# templates/contact.twig #}
+{% extends 'layout.twig' %}
+
+{% block title %}
+Contact us | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+{{ include('_banner.twig', { 'backgroundColor': 'violet' }) }}
+    <h1>{{ pageData.title }}</h1>
+
+    {# ... #}
+{% endblock %}
